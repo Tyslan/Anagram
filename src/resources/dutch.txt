@@ -11,6 +11,7 @@ aanblik
 aanbod
 aanbrengen
 aandacht
+aandachtig
 aandachtsgebieden
 aandachtspunt
 aandachtspunten
@@ -682,6 +683,7 @@ avonturier
 avonturiers
 avontuur
 axioma
+aziaat
 aziatisch
 baal
 baan
