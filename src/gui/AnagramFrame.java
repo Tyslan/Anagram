@@ -11,10 +11,12 @@ import javafx.scene.layout.GridPane;
 import observerPattern.Observer;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.function.ObjDoubleConsumer;
 
 public class AnagramFrame extends GridPane implements Observer{
     private DomainController domainController;
+    private ResourceBundle rb;
 
     @FXML
     private Button btnToEnglish;
@@ -23,15 +25,18 @@ public class AnagramFrame extends GridPane implements Observer{
     @FXML
     private Button btnSolve;
     @FXML
-    private Label lblLanguage;
-    @FXML
     private Label lblSolution;
+    @FXML
+    private Label lblSolutionLabel;
+    @FXML
+    private Label lblAnagram;
     @FXML
     private TextField txtAnagram;
 
     public AnagramFrame(DomainController dc){
         domainController=dc;
         dc.addObserver(this);
+        rb = domainController.getLanguage();
 
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AnagramFrame.fxml"));
@@ -42,7 +47,7 @@ public class AnagramFrame extends GridPane implements Observer{
             e.printStackTrace();
         }
 
-        lblLanguage.setText("English");
+        update();
     }
 
     @FXML
@@ -59,7 +64,12 @@ public class AnagramFrame extends GridPane implements Observer{
 
     @Override
     public void update() {
-        lblLanguage.setText(domainController.getLanguage());
+        rb=domainController.getLanguage();
+        btnToEnglish.setText(rb.getString("english"));
+        btnToDutch.setText(rb.getString("dutch"));
+        btnSolve.setText(rb.getString("solve"));
+        lblSolutionLabel.setText(rb.getString("solution"));
+        lblAnagram.setText(rb.getString("anagram"));
         lblSolution.setText(domainController.getSolution());
     }
 }

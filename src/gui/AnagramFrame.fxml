@@ -28,12 +28,12 @@
           <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Anagram:">
+            <Label fx:id="lblAnagram" text="Anagram:">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Solution:" GridPane.rowIndex="1">
+            <Label fx:id="lblSolutionLabel" text="Solution:" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
@@ -61,11 +61,6 @@
             <Button fx:id="btnToEnglish" mnemonicParsing="false" onAction="#toEnglish" text="To English" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="btnToDutch" mnemonicParsing="false" onAction="#toDutch" text="To Dutch" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="btnSolve" mnemonicParsing="false" onAction="#solve" text="Solve" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label fx:id="lblLanguage" text="Label">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin>
-            </Label>
          </children>
       </GridPane>
    </children>

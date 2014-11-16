@@ -4,10 +4,7 @@ import observerPattern.Observer;
 import observerPattern.Subject;
 import persistence.PersistenceController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Lorenz on 15/11/14.
@@ -18,7 +15,7 @@ public class DomainController implements Subject{
     PersistenceController persistenceController;
     Map<String,List<String>> dictionary;
     String solution;
-    String language;
+    ResourceBundle language;
 
     public DomainController(){
         observers=new ArrayList<>();
@@ -28,12 +25,14 @@ public class DomainController implements Subject{
 
     public void setDictionaryToEnglish(){
         dictionary=persistenceController.giveMapWords("src/resources/english.txt");
-        setLanguage("English");
+        language=ResourceBundle.getBundle("resources.screen_en_US",new Locale("en","US"));
+        notifyObservers();
     }
 
     public void setDictionaryToDutch(){
         dictionary=persistenceController.giveMapWords("src/resources/dutch.txt");
-        setLanguage("Dutch");
+        language=ResourceBundle.getBundle("resources.screen_nl_BE",new Locale("nl","BE"));
+        notifyObservers();
     }
 
     public void findWord(String anagram){
@@ -74,12 +73,7 @@ public class DomainController implements Subject{
         notifyObservers();
     }
 
-    public String getLanguage(){
+    public ResourceBundle getLanguage(){
         return language;
-    }
-
-    private void setLanguage(String language){
-        this.language=language;
-        notifyObservers();
     }
 }
