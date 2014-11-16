@@ -16,7 +16,7 @@ import java.util.Map;
 public class DomainController implements Subject{
     List<Observer> observers;
     PersistenceController persistenceController;
-    Map<String,String> dictionary;
+    Map<String,List<String>> dictionary;
     String solution;
     String language;
 
@@ -40,11 +40,14 @@ public class DomainController implements Subject{
         char[] chars = anagram.toCharArray();
         Arrays.sort(chars);
         String sorted = new String(chars);
-        String result = dictionary.get(sorted);
-        if(result==null)
+        List<String> resultList = dictionary.get(sorted);
+        if(resultList==null)
             setSolution("No solutions");
-        else
-            setSolution(result);
+        else{
+            StringBuilder result = new StringBuilder();
+            resultList.forEach(str->result.append(str).append(" "));
+            setSolution(result.toString());
+        };
     }
 
     @Override
