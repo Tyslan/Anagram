@@ -57,9 +57,11 @@ public class AnagramFrame extends GridPane implements Observer{
     @FXML
     public void toDutch(){
         domainController.setDictionaryToDutch();
+        txtAnagram.setText("");
     }
     public void toEnglish(){
         domainController.setDictionaryToEnglish();
+        txtAnagram.setText("");
     }
 
     @Override

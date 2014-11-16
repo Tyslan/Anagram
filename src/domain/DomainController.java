@@ -41,7 +41,7 @@ public class DomainController implements Subject{
         String sorted = new String(chars);
         List<String> resultList = dictionary.get(sorted);
         if(resultList==null)
-            setSolution("No solutions");
+            setSolution(language.getString("nosolution"));
         else{
             StringBuilder result = new StringBuilder();
             resultList.forEach(str->result.append(str).append(" "));
