@@ -1,4 +1,4 @@
 Anagram
 =======
 
-AnagramSolver in JavaFX
+Anagram solver in JavaFX
