@@ -47,7 +47,7 @@ public class DomainController implements Subject{
             setSolution(new ArrayList<>());
         else{
             setSolution(resultList);
-        };
+        }
     }
 
     @Override
