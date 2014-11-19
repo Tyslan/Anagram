@@ -1,5 +1,7 @@
 package domain;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import observerPattern.Observer;
 import observerPattern.Subject;
 import persistence.PersistenceController;
@@ -14,13 +16,14 @@ public class DomainController implements Subject{
     List<Observer> observers;
     PersistenceController persistenceController;
     Map<String,List<String>> dictionary;
-    String solution;
+    ObservableList<String> solution;
     ResourceBundle language;
 
     public DomainController(){
         observers=new ArrayList<>();
         persistenceController = new PersistenceController();
         setDictionaryToEnglish();
+        solution=FXCollections.observableList(new ArrayList<String>());
     }
 
     public void setDictionaryToEnglish(){
@@ -36,16 +39,14 @@ public class DomainController implements Subject{
     }
 
     public void findWord(String anagram){
-        char[] chars = anagram.toCharArray();
+        char[] chars = anagram.toLowerCase().toCharArray();
         Arrays.sort(chars);
         String sorted = new String(chars);
         List<String> resultList = dictionary.get(sorted);
         if(resultList==null)
-            setSolution(language.getString("nosolution"));
+            setSolution(new ArrayList<>());
         else{
-            StringBuilder result = new StringBuilder();
-            resultList.forEach(str->result.append(str).append(" "));
-            setSolution(result.toString());
+            setSolution(resultList);
         };
     }
 
@@ -64,13 +65,13 @@ public class DomainController implements Subject{
         observers.forEach(ob->ob.update());
     }
 
-    public String getSolution(){
+    public ObservableList<String> getSolution(){
         return solution;
     }
 
-    private void setSolution(String solution) {
-        this.solution = solution;
-        notifyObservers();
+    private void setSolution(List solution) {
+        this.solution.clear();
+        this.solution.addAll(solution);
     }
 
     public ResourceBundle getLanguage(){

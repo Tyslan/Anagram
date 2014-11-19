@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import observerPattern.Observer;
@@ -25,7 +26,7 @@ public class AnagramFrame extends GridPane implements Observer{
     @FXML
     private Button btnSolve;
     @FXML
-    private Label lblSolution;
+    private ListView lstVwSolution;
     @FXML
     private Label lblSolutionLabel;
     @FXML
@@ -46,7 +47,7 @@ public class AnagramFrame extends GridPane implements Observer{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        lstVwSolution.setItems(domainController.getSolution());
         update();
     }
 
@@ -72,6 +73,5 @@ public class AnagramFrame extends GridPane implements Observer{
         btnSolve.setText(rb.getString("solve"));
         lblSolutionLabel.setText(rb.getString("solution"));
         lblAnagram.setText(rb.getString("anagram"));
-        lblSolution.setText(domainController.getSolution());
     }
 }
